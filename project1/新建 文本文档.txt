@@ -1,0 +1,18 @@
+第一步
+下载vscode,git,nvm,nodejs
+vscode直接下载
+
+git clone 项目地址  git clone项目
+git上传项目到github:
+github项目创建并且关联：
+git init  本地创建.git文件
+git remote add origin https://github.com/keke-xixi/App.git   设置远程仓库地址
+git commit -m "描述你的更改"   首次提交
+git branch -a   查看所有分支
+git push -u origin master   如果显示的是 master 而非 main  就直接推送到 master
+
+先安装nvm通过nvm再安装nodejs
+nvm安装后使用指令 nvm list available 查看可安装的node版本
+输入 nvm install 版本号 安装指定版本node  例：nvm install 16.0.0
+输入 nvm list 查看已安装版本的node
+nvm use 已安装版本号 切换使用指定的版本的node
