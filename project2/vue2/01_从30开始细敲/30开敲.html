@@ -9,9 +9,11 @@
 <body>
     <div id="root">
         <h1>人员列表</h1>
+        <button @click.once="add">添加一个老六</button>
         <ul>
-            <li v-for="(p,index) in persons">
+            <li v-for="(p,index) in persons" :key="p.id">
                 {{p.name}} - {{p.age}}
+                <input type="text">
             </li>
         </ul>
     </div>
