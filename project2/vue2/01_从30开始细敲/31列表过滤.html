@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>人员列表</h1>
+        <input type="text" placeholder="请输入名字" v-model="KeyWord">
+        <ul>
+            <li v-for="(p,index) in persons" :key="p.id">
+                {{p.name}} - {{p.age}}
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:'#root',
+            data:{
+                KeyWord:'',
+                persons:[
+                    {id:'001',name:'佐亚',age:18,sex:'女'},
+                    {id:'002',name:'威龙',age:20,sex:'男'},
+                    {id:'003',name:'红狼',age:20,sex:'男'},
+                    {id:'004',name:'麦小雯',age:18,sex:'女'}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
