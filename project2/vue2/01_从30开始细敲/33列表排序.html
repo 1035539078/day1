@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>人员列表</h1>
+        <button @click="updateWen">更新麦小雯</button>
+        <ul>
+            <li v-for="(p,index) in persons" :key="p.id">
+                {{p.name}} - {{p.age}} -{{p.sex}}
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el:'#root',
+            data:{
+                persons:[
+                    {id:'001',name:'佐亚',age:18,sex:'女'},
+                    {id:'002',name:'威龙',age:22,sex:'男'},
+                    {id:'003',name:'红狼',age:24,sex:'男'},
+                    {id:'004',name:'麦小雯',age:18,sex:'女'}
+                ]
+            },
+            methods:{
+                updateWen(){
+                    // this.persons[0].name = '露娜'
+                    // this.persons[0].age = 26
+                    // this.persons[0].sex = '女'
+                    this.persons[0] = {id:'001',name:'露娜',age:26,sex:'女'}//数据监听原理问题
+                }
+            }
+    })
+    </script>
+</body>
+</html>

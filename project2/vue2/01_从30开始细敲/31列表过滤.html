@@ -9,9 +9,9 @@
 <body>
     <div id="root">
         <h1>人员列表</h1>
-        <input type="text" placeholder="请输入名字" v-model="KeyWord">
+        <input type="text" placeholder="请输入名字" v-model="keyWord">
         <ul>
-            <li v-for="(p,index) in persons" :key="p.id">
+            <li v-for="(p,index) in filPerons" :key="p.id">
                 {{p.name}} - {{p.age}}
             </li>
         </ul>
@@ -20,18 +20,48 @@
     <script type="text/javascript">
         Vue.config.productionTip = false
 
+    //     new Vue({
+    //         el:'#root',
+    //         data:{
+    //             keyWord:'',
+    //             persons:[
+    //                 {id:'001',name:'佐亚',age:18,sex:'女'},
+    //                 {id:'002',name:'威龙',age:20,sex:'男'},
+    //                 {id:'003',name:'红狼',age:20,sex:'男'},
+    //                 {id:'004',name:'麦小雯',age:18,sex:'女'}
+    //             ],
+    //             filPersons:[]
+    //         },
+    //         watch:{
+    //             keyWord:{
+    //                     immediate:true,
+    //                     handler(val){
+                        //     this.filPersons=this.persons.filter((p)=>{
+                        // return p.name.indexOf(val) !== -1                 
+    //                 })
+    //             }
+    //         }
+    //     }
+    // })
         new Vue({
             el:'#root',
             data:{
-                KeyWord:'',
+                keyWord:'',
                 persons:[
                     {id:'001',name:'佐亚',age:18,sex:'女'},
                     {id:'002',name:'威龙',age:20,sex:'男'},
                     {id:'003',name:'红狼',age:20,sex:'男'},
                     {id:'004',name:'麦小雯',age:18,sex:'女'}
                 ]
+            },
+            computed:{
+                filPerons(){
+                    return this.persons.filter((p)=>{
+                        return p.name.indexOf(this.keyWord) !== -1               
+                })
             }
-        })
+        }
+    })
     </script>
 </body>
 </html>
