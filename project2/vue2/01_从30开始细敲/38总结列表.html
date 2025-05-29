@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>学生信息</h1>
+        <button @click="ageAdd">年龄+1岁</button>
+        <button @click="sexAdd">添加性别属性，默认值为男</button>
+        <button @click="friendsAdd">在列表首位添加一个朋友</button>
+        <button @click="friendsSet">修改第一朋友的名字为张三</button>
+        <button @click="hobbyAdd">添加一个爱好</button>
+        <button @click="hobbySet">修改第一个爱好为开车</button>
+        <button @click="hobbyFilter">过滤掉爱好中的黄曼</button>
+        <h3>姓名:{{student.name}}</h3>
+        <h3>年龄:{{student.age}}</h3>
+        <h3 v-if="student.sex">性别：{{student.sex}}</h3>
+        <h3>爱好:<h3>
+        <ul>
+            <li v-for="(h,index) in student.hobby" :key="index">
+                {{h}}
+            </li>
+        </ul>
+        <h3>朋友们:<h3>
+        <ul>
+            <li v-for="(f,index) in student.friends" :key="index">
+                {{f.name}}--{{f.age}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            student:{
+                name:'tom',
+                age:18,
+                hobby:['黄书','黄曼','黄视频'],
+                friends:[
+                    {name:'jerry',age:16},
+                    {name:'tony',age:25}
+                ]
+            }
+        },
+        methods:{
+            ageAdd(){
+                this.student.age++
+            },
+            sexAdd(){
+                this.$set(this.student,'sex','男')
+            },
+            friendsAdd(){
+                const newFriends = {name:'fight',age:22}
+                this.student.friends.unshift(newFriends)
+                // this.friends.splice(0,0,newFriends)
+                // this.$set(this.student.friends,newFriends)
+                // Vue.set(this.student.friends)
+            },
+            friendsSet(){
+                this.student.friends[1].name = '张三'
+            },
+            hobbyAdd(){
+                const newhobby = '摇人'
+                this.student.hobby.push(newhobby)
+            },
+            hobbySet(){
+                console.log('我触发了'),
+                // this.student.hobby.splice(0,1,'开车')
+                // Vue.set(this.student.hobby,0,'开车')
+                this.$set(this.student.hobby,0,'开车')
+            },
+            hobbyFilter(){
+                this.student.hobby=this.student.hobby.filter((h)=>{
+                    return h !== '黄曼'
+                })
+            }
+        }
+    })
+</script>
+</html>
+<!--在Vue数组中修改数组中的某个元素一定要-用如下方法
+push()、pop()、shift()、unshift()、splice()、sort()、reverse()
+Vue.set() 或者 vm.$set()
+Vue.set()和vm.$set()不能给vm或者vm的根数据对象 添加属性
+可以通过修改将添加的根数据设置为对象内的属性
+-->
+<!--
+vue中使用的是数据代理如果要使用代理中对象x里的y请使用this.x.y
+如果是使用x直接使用this.x
+-->
